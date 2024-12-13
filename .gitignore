@@ -1,2 +1,2 @@
 #ingore all the .npz files
-*.npz
+# *.npz
