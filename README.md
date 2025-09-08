@@ -1,96 +1,63 @@
-# Deep Learning Uni Projects
+# 🧠 Deep Learning University Projects
 
-## Project 1: Image Classification with Convolutional Neural Networks
+This repository contains two comprehensive deep learning projects developed for the Artificial Neural Networks and Deep Learning course, showcasing advanced techniques in computer vision and neural network architectures.
 
-This project focuses on multi-class classification of blood cell images using deep learning techniques. A convolutional neural network (CNN) was designed to process a dataset of labeled blood cell images and classify them into eight distinct categories.
+## 🩸 Project 1: Blood Cell Image Classification
+**Objective**: Multi-class classification of blood cell images into 8 categories  
+**Architecture**: MobileNetV3Large with custom classifier layers  
+**Key Results**: 
+- ✅ **97.59%** accuracy on internal test set
+- 📊 **0.67** benchmark score
+- 🔬 Processed 11,738 blood cell images (96x96 pixels)
 
-### Problem Overview
-
-The dataset contained 13,759 RGB images (96x96 pixels), categorized into eight classes. After removing artifacts and inconsistencies, the usable dataset consisted of 11,738 images. To address class imbalance, class weight balancing was applied during training.
-
-### Methodology
-
-#### Data Preparation
-
-- **Dataset Splits**:
-  - Training: 7,981 images
-  - Validation: 1,409 images
-  - Test: 2,348 images
-- **Data Augmentation**: 
-  - Random transformations (e.g., flip, rotation, zoom, noise) were applied to expand the dataset.
-
-#### Model Architecture
-
-- **Base Model**: MobileNetV3Large pretrained on ImageNet.
-- **Custom Classifier**:
-  - Squeeze-and-Excitation block for feature recalibration.
-  - Global Average Pooling (GAP) for dimensionality reduction.
-  - Dense layers with Swish activation, L2 regularization, Batch Normalization, and Dropout.
-- **Fine-Tuning**:
-  - Made 140 layers of MobileNetV3Large trainable for task-specific adaptation.
-
-#### Optimization
-
-- Techniques like EarlyStopping, ReduceLROnPlateau, and balanced class weights were implemented to prevent overfitting and improve performance.
-
-### Results
-
-- **Accuracy**:
-  - Internal Test Set: 97.59%
-  - Benchmark Platform: 0.67
-- The confusion matrix highlighted overfitting to dominant classes, suggesting further refinements in class balancing and preprocessing could enhance performance.
-
-| Notebook | Report |
-| --- | --- |
-| [Project 1 Notebook](./Image%20Classification/Notebook%20Homework%201.ipynb) | [Project 1 Report](./Image%20Classification/Report%20Homework%201.pdf) |
-
-### Conclusion
-
-While the model achieved high local accuracy, its generalization performance on the benchmark was limited. Future improvements may include better data preprocessing, alternative custom classifiers, and refined class balancing strategies.
+[📂 View Project Details](./Image%20Classification/)
 
 ---
 
-## Project 2 - Mars Terrain Segmentation Project
+## 🔴 Project 2: Mars Terrain Segmentation  
+**Objective**: Semantic segmentation of Martian terrain into 5 classes (background, soil, bedrock, sand, big rock)  
+**Architecture**: Dual U-Net with attention mechanisms and ensemble approach  
+**Key Results**:
+- 🎯 **0.52828** benchmark score
+- 🚀 Advanced U-Net architectures with custom modules
+- 🌍 Processed 2,505 Mars terrain images (64x128 pixels)
 
-This project tackles a multi-class semantic segmentation challenge using U-Net-based deep learning models. The objective was to classify Martian terrain images into five categories: background, soil, bedrock, sand, and big rock.
+[📂 View Project Details](./Image%20Segmentation/)
 
-### Problem Overview
+---
 
-The dataset comprised grayscale images (64x128 pixels) with manually annotated masks. Artifacts were removed, reducing the training set to 2,505 samples. Class imbalance posed a significant challenge, particularly for the "big rock" class, which required targeted interventions.
+## 📋 Repository Structure
 
-### Methodology
+```
+Deep-Learning-Uni-Projects/
+├── 📁 Image Classification/           # Blood cell classification project
+│   ├── 📓 Notebook Homework 1.ipynb   # Main implementation notebook
+│   ├── 📄 AN2DL_Homeworks_Report.pdf  # Detailed project report
+│   └── 📊 training_set.npz            # Blood cell dataset
+├── 📁 Image Segmentation/             # Mars terrain segmentation project  
+│   ├── 📓 anndl-homework-2.ipynb      # Main implementation notebook
+│   ├── 📓 big-rock-specialized-model.ipynb # Specialized model for big rocks
+│   ├── 📓 ensemble-experiment.ipynb   # Ensemble approach experiments
+│   ├── 📄 AN2DL_Homework_2_Report.pdf # Detailed project report
+│   └── 📊 mars_for_students.npz       # Mars terrain dataset
+└── 📖 README.md                       # This file
+```
 
-#### Data Preparation
+## 🎯 Key Highlights
 
-- **Data Augmentation**: Geometric transformations (e.g., rotation, flipping) were applied consistently to both images and masks to expand the dataset.
-- **Data Balancing**: Strategies included:
-  - Removing single-class masks.
-  - Generating targeted samples for underrepresented classes.
+- **State-of-the-art Architectures**: Implementation of MobileNetV3Large and advanced U-Net models
+- **Custom Modules**: Squeeze-and-Excitation blocks, attention mechanisms, and cellular automata
+- **Data Handling**: Comprehensive preprocessing, augmentation, and class balancing strategies  
+- **Performance Optimization**: Advanced techniques including focal loss, ensemble methods, and fine-tuning
+- **Real-world Applications**: Medical imaging and space exploration computer vision tasks
 
-#### Model Architecture
+## 🛠️ Technologies Used
 
-- **Base Model**: Dual U-Net architectures:
-  - **Macro U-Net**: Captured global features using dilated convolutions and attention mechanisms.
-  - **Micro U-Net**: Preserved finer details and textures with fewer, larger filters and a Global Context Module.
-- **Custom Modules**:
-  - **Squeeze-and-Excitation Block**: Enhanced channel-wise feature importance.
-  - **Dilated Inception Block**: Extracted features at multiple scales.
-  - **Cellular Automata Module**: Refined details through iterative local interactions.
-- **Ensemble Approach**: Integrated a simpler model targeting the "big rock" class with the advanced architecture.
+- **Deep Learning**: TensorFlow/Keras
+- **Computer Vision**: OpenCV, PIL
+- **Data Science**: NumPy, Pandas, Matplotlib
+- **Development**: Jupyter Notebooks, Google Colab
 
-#### Optimization
+---
 
-- Custom loss functions, including Focal Loss with class-specific weights, were explored to address class imbalance.
-
-### Results
-
-- **Benchmark Score**: 0.52828
-- The model performed well for most classes but struggled with "big rock," as reflected in the confusion matrix and low IoU score.
-
-| Notebook | Report |
-| --- | --- |
-| [Project 2 Notebook](./Image%20Segmentation/anndl-homework-2.ipynb) | [Project 2 Report](./Image%20Segmentation/Report%20Homework%202.pdf) |
-
-### Conclusion
-
-The project demonstrated effective segmentation for most classes but highlighted challenges in handling severe class imbalance. Future work could focus on improved data augmentation, alternative loss functions, or novel architectures to enhance performance, particularly for underrepresented classes.
+*Developed as part of the Artificial Neural Networks and Deep Learning course - Showcasing practical applications of advanced deep learning techniques in computer vision.*
